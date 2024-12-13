@@ -13,5 +13,14 @@ docker exec -it containerID bash komutu ile container a bağlanmalı
 projenin yoluna gelinmeli ( cd eticaret)
 
 cp .env.example .env komutu çalıştırılmalı
+
+Bu komutları tek tek çalıştır.
+
+chmod -R 775 /var/www/html/eticaret/storage
+
+chown -R www-data:www-data /var/www/html/eticaret/storage
+
+
 php artisan key:generate komutu çalıştırılmalı
+
 composer install komutu çalıştırılmalı
