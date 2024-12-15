@@ -5,6 +5,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\MyOrdersController;
+use App\Http\Controllers\DashboardController;
+
 use Illuminate\Support\Facades\Route;
 
 /*Route::get('/', function () {
@@ -17,3 +19,6 @@ Route::get("/sepet",[CardController::class,'card']);
 Route::get("/odeme",[CheckoutController::class,'index']);
 Route::get("/siparislerim",[MyOrdersController::class,'index']);
 Route::get("/siparislerim-detay",[MyOrdersController::class,'detail']);
+Route::prefix("admin")->group(function(){
+    Route::get("/",[DashboardController::class,'index']);
+});
