@@ -9,6 +9,6 @@ use Illuminate\Support\Facades\Route;
     return view('');
 });*/
 Route::get('/' ,[FrontController::class,'index']);
-Route::get("/urunler-listesi",[ProductController::class,'liste']);
-Route::get("/urun-detay",[ProductController::class,'detay']);
+Route::get("/urunler-listesi",[ProductController::class,'list']);
+Route::get("/urun-detay",[ProductController::class,'detail']);
 Route::get("/sepet",[CardController::class,'card']);

@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function liste(){
+    public function list(){
         return view('front.product-list');
     }
-    public function detay(){
+    public function detail(){
         return view('front.product-detail');
     }
 
