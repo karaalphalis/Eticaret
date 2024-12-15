@@ -347,6 +347,7 @@
 <script src="{{ asset('assets/js/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/swiper/swiper-bundle.min.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
+<script src="{{ asset('assets/js/product-detail.js') }}"></script>
 @stack("js")
 
 </body>
