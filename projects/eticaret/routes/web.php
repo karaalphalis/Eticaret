@@ -11,4 +11,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/' ,[FrontController::class,'index']);
 Route::get("/urunler-listesi",[ProductController::class,'liste']);
 Route::get("/urun-detay",[ProductController::class,'detay']);
-Route::get("/sepet",[\App\Http\Controllers\CardController::class,'sepet']);
+Route::get("/sepet",[CardController::class,'sepet']);
