@@ -423,5 +423,5 @@
 @endsection
 
 @push("js")
-    <script src="assets/js/home.js"></script>
+    <script src="{{asset('assets/js/home.js')}}"></script>
 @endpush
