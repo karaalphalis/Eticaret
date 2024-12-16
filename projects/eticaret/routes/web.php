@@ -8,6 +8,7 @@ use App\Http\Controllers\Front\DashboardController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Front\MyOrdersController;
 use App\Http\Controllers\Front\ProductController;
+
 use Illuminate\Support\Facades\Route;
 
 /*Route::get('/', function () {
