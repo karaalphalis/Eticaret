@@ -17,14 +17,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/' ,[FrontController::class,'index']);
 Route::get("/urunler-listesi",[ProductController::class,'list']);
 Route::get("/urun-detay",[ProductController::class,'detail']);
+
 Route::get("/sepet",[CardController::class,'card']);
 Route::get("/odeme",[CheckoutController::class,'index']);
+
 Route::get("/siparislerim",[MyOrdersController::class,'index']);
 Route::get("/siparislerim-detay",[MyOrdersController::class,'detail']);
 
+
+
 Route::get("kayit-ol",[RegisterController::class,'showForm'])->name("register");
 Route::post("kayit-ol",[RegisterController::class,'register']);
-Route::get("giris",[LoginController::class,'showForm'])->name("login");
+Route::get("giris",[LoginController::class,'showForm'])->name("login")->middleware('throttle:login');
 Route::post("giris",[LoginController::class,'login']);
 Route::get("cikis",[LoginController::class,'logout'])->name("logout");
 

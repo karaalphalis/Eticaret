@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserRegisterEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -12,6 +14,9 @@ class RegisterController extends Controller
         return view('auth.register');
     }
     public function register(RegisterRequest $request){
-        dd($request->all());
+        $data = $request->only('name','email','password');
+        $user = User::create($data);
+        event(new UserRegisterEvent($user));
+        return ;
     }
 }
