@@ -21,7 +21,8 @@ class RegisterController extends Controller
         return ;
     }
     public function verify(Request $request){
-        $userID= Cache::get('verify_token' . $request-> token);
+
+        $userID= Cache::get('verify_token_' . $request-> token);
         if(!$userID){
             dd("user yok");
         }
@@ -29,8 +30,9 @@ class RegisterController extends Controller
         $user= User::findOrFail($userID);
         $user->email_verified_at= now();
         $user->save();
-        Cache::forget('verify_token' . $request->token);
+        Cache::forget('verify_token_' . $request->token);
 
         dd("user doğrulandı");
     }
+
 }
