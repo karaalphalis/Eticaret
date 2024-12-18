@@ -14,6 +14,24 @@ use Illuminate\Support\Facades\Route;
 /*Route::get('/', function () {
     return view('');
 });*/
+
+Route::prefix("kayit-ol")->middleware(['throttle:registration', 'guest'])->group(function()
+{
+    Route::get("/", [RegisterController::class, 'showForm'])->name("register");
+    Route::post("/", [RegisterController::class, 'register']);
+});
+Route::prefix('giris')->middleware(['throttle:100,60', 'guest'])->group(function ()
+{
+    Route::get("/", [LoginController::class, 'showForm'])->name('login');
+    Route::post("/", [LoginController::class, 'login']);
+});
+Route::post('logout', [LoginController::class, 'logout'])->name("logout");
+
+Route::get('/dogrula/{token}', [RegisterController::class, 'verify'])->name("verify");
+Route::get('/dogrula-mail', [RegisterController::class, 'sendVerifyMailShowForm'])->name('send-verify-mail');
+Route::post('/dogrula-mail', [RegisterController::class, 'sendVerifyMail']);
+
+
 Route::get('/' ,[FrontController::class,'index']);
 Route::get("/urunler-listesi",[ProductController::class,'list']);
 Route::get("/urun-detay",[ProductController::class,'detail']);
@@ -26,11 +44,6 @@ Route::get("/siparislerim-detay",[MyOrdersController::class,'detail']);
 
 
 
-Route::get("kayit-ol",[RegisterController::class,'showForm'])->name("register");
-Route::post("kayit-ol",[RegisterController::class,'register']);
-Route::get("giris",[LoginController::class,'showForm'])->name("login")->middleware('throttle:login');
-Route::post("giris",[LoginController::class,'login']);
-Route::get("cikis",[LoginController::class,'logout'])->name("logout");
 
 Route::prefix("admin")->group(function(){
     Route::get("/",[DashboardController::class,'index']);

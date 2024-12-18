@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Events\UserRegisterEvent;
+use App\Listeners\UserRegisterListener;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
