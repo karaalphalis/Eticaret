@@ -17,7 +17,8 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request){
         $data = $request->only('name','email','password');
         $user = User::create($data);
-        event(new UserRegisterEvent($user));
+        //event(new UserRegisterEvent($user));
+
         return ;
     }
     public function verify(Request $request){
