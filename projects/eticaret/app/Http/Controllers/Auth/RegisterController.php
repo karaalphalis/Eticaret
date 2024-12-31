@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
 class RegisterController extends Controller
@@ -18,8 +19,12 @@ class RegisterController extends Controller
         $data = $request->only('name','email','password');
         $user = User::create($data);
         //event(new UserRegisterEvent($user));
+//        $remember = $request->has('remember');
+//        Auth::login($user, $remember);
 
-        return ;
+        alert()->info('Bilgilendirme','Lütfen Mailinize gelen onay mailini onaylayınız');
+       // dd("user kaydedildi");
+        return redirect()->back() ;
     }
     public function verify(Request $request){
 

@@ -20,7 +20,7 @@ class UserObserver
         Cache::put('verify_token_' . $token, $user->id, 3600);
 
         $user->notify(new WelcomeMailNotification($token));
-        dd("Çalıştı." , $user);
+
     }
 
     /**
