@@ -18,9 +18,7 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request){
         $data = $request->only('name','email','password');
         $user = User::create($data);
-        //event(new UserRegisterEvent($user));
-//        $remember = $request->has('remember');
-//        Auth::login($user, $remember);
+
 
         alert()->info('Bilgilendirme','Lütfen Mailinize gelen onay mailini onaylayınız');
        // dd("user kaydedildi");
@@ -30,7 +28,8 @@ class RegisterController extends Controller
 
         $userID= Cache::get('verify_token_' . $request-> token);
         if(!$userID){
-            dd("user yok");
+            alert()->warning('Uyarı','Token geçerlilik süresi geçmiş.');
+            return redirect()->route('register');
         }
 
         $user= User::findOrFail($userID);
@@ -38,7 +37,9 @@ class RegisterController extends Controller
         $user->save();
         Cache::forget('verify_token_' . $request->token);
 
-        dd("user doğrulandı");
+        Auth::login($user);
+        alert()->info('Başarılı','Hesabınız onaylandı.');
+        return redirect()->route('login');
     }
 
 }

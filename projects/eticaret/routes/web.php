@@ -27,6 +27,10 @@ Route::prefix('giris')->middleware(['throttle:100,60', 'guest'])->group(function
 });
 Route::post('logout', [LoginController::class, 'logout'])->name("logout");
 
+Route::prefix("admin")->middleware("auth")->group(function(){
+    Route::get("/",[DashboardController::class,'index'])->name("admin.index");
+});
+
 Route::get('/dogrula/{token}', [RegisterController::class, 'verify'])->name("verify");
 Route::get('/dogrula-mail', [RegisterController::class, 'sendVerifyMailShowForm'])->name('send-verify-mail');
 Route::post('/dogrula-mail', [RegisterController::class, 'sendVerifyMail']);
@@ -43,8 +47,3 @@ Route::get("/siparislerim",[MyOrdersController::class,'index']);
 Route::get("/siparislerim-detay",[MyOrdersController::class,'detail']);
 
 
-
-
-Route::prefix("admin")->group(function(){
-    Route::get("/",[DashboardController::class,'index']);
-});
