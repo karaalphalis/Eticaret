@@ -5,7 +5,7 @@
 
 @section('body')
     <div class="auth-form-wrapper px-4 py-5">
-        <a href="#" class="noble-ui-logo d-block mb-2">GDG<span>ETicaret</span></a>
+        <a href="#" class="noble-ui-logo d-block mb-2">Shoe Store<span>ETicaret</span></a>
         <h5 class="text-muted fw-normal mb-4">Hesap Oluşturun.</h5>
         <form class="forms-sample" action="{{ route('register') }}" method="POST" id="registerForm">
             @csrf

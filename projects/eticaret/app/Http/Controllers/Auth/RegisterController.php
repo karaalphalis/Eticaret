@@ -31,15 +31,23 @@ class RegisterController extends Controller
             alert()->warning('Uyarı','Token geçerlilik süresi geçmiş.');
             return redirect()->route('register');
         }
+        // User dan bulup onaylama işlemi
+       // $user= User::findOrFail($userID);
+       // $user->email_verified_at= now();
+       // $user->save();
+        // En son token unutturma
+        //Cache::forget('verify_token_' . $request->token);
 
-        $user= User::findOrFail($userID);
-        $user->email_verified_at= now();
-        $user->save();
-        Cache::forget('verify_token_' . $request->token);
+        //Observera yönlendiriyor
+        $userQuery = User::query()
+            ->where('id',$userID);
+        $user = $userQuery->firstOrFail();
+
+        $userQuery->update(['email_verified_at' => now()]);
 
         Auth::login($user);
         alert()->info('Başarılı','Hesabınız onaylandı.');
-        return redirect()->route('login');
+        return redirect()->route('admin.index');
     }
 
 }

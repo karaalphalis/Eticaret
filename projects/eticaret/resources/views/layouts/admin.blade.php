@@ -34,7 +34,7 @@
         </div>
 
         <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3 border-top small">
-            <p class="text-muted mb-1 mb-md-0">Copyright © {{ date('Y') }} <a href="">GDG E-Ticaret</a>.</p>
+            <p class="text-muted mb-1 mb-md-0">Copyright © {{ date('Y') }} <a href="">Shoe Store</a>.</p>
         </footer>
     </div>
 </div>
@@ -46,7 +46,7 @@
     feather.replace();
 </script>
 <script src="{{ asset('assets/vendors/sweetalert2/sweetalert2.min.js') }}"></script>
-{{--@include('sweetalert::alert')--}}
-{{--@stack("js")--}}
+@include('sweetalert::alert')
+@stack("js")
 </body>
 </html>

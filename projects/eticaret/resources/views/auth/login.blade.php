@@ -1,11 +1,11 @@
 @extends('layouts.auth')
-@section('title', 'Kayıt Ol')
+@section('title', 'Giriş Yap')
 @push('css') @endpush
 
 
 @section('body')
     <div class="auth-form-wrapper px-4 py-5">
-        <a href="#" class="noble-ui-logo d-block mb-2">GDG<span>ETicaret</span></a>
+        <a href="#" class="noble-ui-logo d-block mb-2">Shoe Store<span>ETicaret</span></a>
 
         <h5 class="text-muted fw-normal mb-4">Hoş geldiniz. Hesabınıza giriş yapabilirsiniz.</h5>
         <form class="forms-sample" id="loginForm" action="{{ route('login') }}" method="POST">
