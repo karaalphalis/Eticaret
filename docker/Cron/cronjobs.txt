@@ -1,3 +1,6 @@
 * * * * * root /etc/php8.2/php /var/www/html/eticaret/ artisan schedule:run >> /dev/null 2>&1
 
 * * * * * cd /var/www/html/eticaret/ &&  /usr/local/bin/php artisan schedule:run >> /dev/null 2>&1
+* * * * * root /etc/php8.2/php /var/www/html/eticaret-gdg/ artisan schedule:run >> /dev/null 2>&1
+
+* * * * * cd /var/www/html/eticaret-gdg/ &&  /usr/local/bin/php artisan schedule:run >> /dev/null 2>&1
