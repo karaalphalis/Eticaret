@@ -17,40 +17,51 @@ class RegisterController extends Controller
     public function showForm(){
         return view('auth.register');
     }
-    public function register(RegisterRequest $request){
-        $data = $request->only('name','email','password');
+    public function register(RegisterRequest $request)
+    {
+        $data = $request->only('name','email', 'password');
+
         $user = User::create($data);
+//        event(new UserRegisterEvent($user));
+//
+//        $remember = $request->has('remember');
+//        Auth::login($user, $remember);
 
+        alert()->info('Bilgilendirme','Lütfen mailinize gelen onay mailini onaylayın.');
 
-        alert()->info('Bilgilendirme','Lütfen Mailinize gelen onay mailini onaylayınız');
-       // dd("user kaydedildi");
-        return redirect()->back() ;
+        return redirect()->back();
     }
-    public function verify(Request $request){
 
-        $userID= Cache::get('verify_token_' . $request-> token);
-        if(!$userID){
-            alert()->warning('Uyarı','Token geçerlilik süresi geçmiş.');
+    public function verify(Request $request)
+    {
+        $userID = Cache::get('verify_token_' . $request->token);
+
+        if (!$userID)
+        {
+            alert()->warning('Uyarı','Tokenın geçerlilik süresi dolmuş');
             return redirect()->route('register');
         }
-        // User dan bulup onaylama işlemi
-       // $user= User::findOrFail($userID);
-       // $user->email_verified_at= now();
-       // $user->save();
-        // En son token unutturma
-        //Cache::forget('verify_token_' . $request->token);
 
-        //Observera yönlendiriyor
         $userQuery = User::query()
-            ->where('id',$userID);
+            ->where('id', $userID);
+
         $user = $userQuery->firstOrFail();
 
-        $userQuery->update(['email_verified_at' => now()]);
+        $user->email_verified_at = now();
+        $user->save();
+
 
         Auth::login($user);
-        alert()->info('Başarılı','Hesabınız onaylandı.');
-        return redirect()->route('admin.index');
+        alert()->success('Başarılı','Hesabınız onaylandı.');
+
+        if ($user->hasRole(['super-admin', 'category-manager','product-manager', 'order-manager', 'user-manager']))
+        {
+            return redirect()->route('admin.index');
+        }
+
+        return redirect()->route('index');
     }
+
     public function sendVerifyMailShowForm()
     {
         return view('auth.verify-mail');

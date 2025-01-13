@@ -39,13 +39,13 @@ class LoginController extends Controller
             ]);
         }
 
-//        if ($user->hasRole(['super-admin', 'category-manager','product-manager', 'order-manager', 'user-manager']))
-//        {
-//            return redirect()->route('admin.index');
-//        }
+        if ($user->hasRole(['super-admin', 'category-manager','product-manager', 'order-manager', 'user-manager']))
+        {
+            return redirect()->route('admin.index');
+        }
 
-        //return redirect()->route('admin.index');
-       return redirect()->intended("/admin");
+        return redirect()->route('order.index');
+//        return redirect()->intended("/admin");
     }
 
     public function logout()
@@ -54,30 +54,30 @@ class LoginController extends Controller
 
         return redirect()->route('index');
     }
-//
-//    public function socialite($driver)
-//    {
-//        return Socialite::driver($driver)->redirect();
-//    }
-//
-//    public function socialiteVerify($driver)
-//    {
-//        $user = Socialite::driver($driver)->user();
-//
-//        $checkUser = User::query()->where('email', $user->getEmail())->first();
-//        if ($checkUser)
-//        {
-//            Auth::login($checkUser);
-//            return redirect()->route('index');
-//        }
-//        $createUser = User::create([
-//            'name' => $user->getName(),
-//            'email' => $user->getEmail(),
-//            'password' => bcrypt(123456),
-//            'email_verified_at' => now()
-//        ]);
-//
-//        Auth::login($createUser);
-//        return redirect()->route('index');
-//    }
+
+    public function socialite($driver)
+    {
+        return Socialite::driver($driver)->redirect();
+    }
+
+    public function socialiteVerify($driver)
+    {
+        $user = Socialite::driver($driver)->user();
+
+        $checkUser = User::query()->where('email', $user->getEmail())->first();
+        if ($checkUser)
+        {
+            Auth::login($checkUser);
+            return redirect()->route('index');
+        }
+        $createUser = User::create([
+            'name' => $user->getName(),
+            'email' => $user->getEmail(),
+            'password' => bcrypt(123456),
+            'email_verified_at' => now()
+        ]);
+
+        Auth::login($createUser);
+        return redirect()->route('index');
+    }
 }

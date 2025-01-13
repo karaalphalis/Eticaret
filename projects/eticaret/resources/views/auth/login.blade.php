@@ -30,11 +30,11 @@
             <div>
                 <a href="javascript:void(0)" id="btnLogin"
                    class="btn btn-primary me-2 mb-2 mb-md-0 text-white">Giriş Yap</a>
-{{--                <a href="{{ route('login.socialite', ['driver' => 'google']) }}"--}}
-{{--                   class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">--}}
-{{--                    <i class="mdi mdi-google"></i>--}}
-{{--                    Google İle Giriş Yap--}}
-{{--                </a>--}}
+                <a href="{{ route('login.socialite', ['driver' => 'google']) }}"
+                   class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
+                    <i class="mdi mdi-google"></i>
+                    Google İle Giriş Yap
+                </a>
             </div>
             <a href="{{ route('register') }}" class="d-block mt-3 text-muted">Hesap Oluştur</a>
         </form>

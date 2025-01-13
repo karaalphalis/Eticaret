@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 #[ObservedBy(UserObserver::class)]
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable , HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -24,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'email_verified_at',
     ];
 
     /**

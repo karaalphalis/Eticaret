@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use database\seeders\Category\CategorySeeder;
+use Database\Seeders\RolePermissions\GeneralRolPermissionSeeder;
+use Database\Seeders\User\UserInitializeUserSeeder;
 use Illuminate\Database\Seeder;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -21,7 +23,8 @@ class DatabaseSeeder extends Seeder
 //            'email' => 'test@example.com',
 //        ]);
         $this->call([
-            CategorySeeder::class,
+            GeneralRolPermissionSeeder::class,
+            UserInitializeUserSeeder::class,
         ]);
     }
 }
